@@ -1,0 +1,46 @@
+version: '3'
+services: 
+  
+  db:
+    image: mariadb:latest
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+     MYSQL_ROOT_PASSWORD: example
+    networks: 
+      - internal-container-network
+    volumes:
+      - mariadb-data:/var/lib/mysql
+  
+  fotoservice:
+    image: foto_app:v7
+    restart: always
+    ports:
+      - 8103:80
+    networks: 
+      - internal-container-network
+    volumes:
+      - fotos:/nfs/fotoproject/
+    depends_on:
+      - db
+ 
+
+volumes:
+  #fotos:
+   # driver: local
+   # driver_opts:
+   #   type: none
+   #   device: /nfs/fotoproject/
+   #   o: bind
+  fotos:
+    driver: local
+    driver_opts:
+      type: nfs
+      device: ":/volume1/fotoproject/"
+      o: addr=192.168.2.22,rw
+  mariadb-data:
+  sqldata:
+networks:
+ internal-container-network:
+  driver: bridge

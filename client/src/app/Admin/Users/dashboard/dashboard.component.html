@@ -1,0 +1,20 @@
+<div class="card">
+    <div class="card-header">
+        <h2><span>Managing users</span></h2>
+        <button class="btn btn-secondary" style="float: right;" (click)="addUser()" *ngIf="!showAddPage()">Add User</button>
+    </div>
+   
+    <div class="card-body"  *ngIf="!showAddPage()">
+        <div class="row">
+            <div *ngFor="let t of listOfUsers" class="col-sm-4">
+                <app-userdetails [us]="t"></app-userdetails>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body" *ngIf="showAddPage()">
+        <div class="row">
+           <app-add-user></app-add-user>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+
+
+
+ <div class="row">
+  @for (t of catservice.paginatedResult()?.items; track t.Id){
+  <div class="col-sm-4">
+
+   <app-categoryDetails [selectedCategory]="t"></app-categoryDetails>
+
+  </div>
+  }
+</div> 
+
+@if(catservice.paginatedResult()?.pagination){
+  <div class="d-flex justify-content-center mt-2">
+    <pagination 
+      [boundaryLinks]="true"
+      [totalItems]="catservice.paginatedResult()?.pagination!.totalItems"
+      [itemsPerPage]="catservice.paginatedResult()?.pagination!.itemsPerPage"
+      (pageChanged)="pageChanged($event)"
+      [maxSize]="10"
+    ></pagination>
+  
+  </div>
+}
+
+
+ 
+
+  <!-- @for (t of SeriesArray; track $index) {
+  <div class="row equal">
+    <div class="col-lg-2 col-md-3 col-sm-6">
+      <app-categoryDetails [selectedCategory]="t" style="width: 100%;"></app-categoryDetails>
+    </div>
+  </div>
+  }  -->
+

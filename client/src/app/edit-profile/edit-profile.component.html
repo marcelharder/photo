@@ -1,0 +1,38 @@
+<form #userPasswordChangeForm="ngForm" id="pwdForm">
+<div class="container" class="mt-2">
+   
+    <div class="card">
+        <div class="card-header">
+            <span class="label label-primary">Change password</span>
+            <span style="float: right;">{{pwd.Email}}</span>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-6 ">Current password</div>
+                <div class="col-sm-6"><input type=text id=opd name=oldpwd [(ngModel)]="pwd.CurrentPassword" class="form-control"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 mt-2">New password</div>
+                <div class="col-sm-6"><input type=text id=newopd name=newpwd [(ngModel)]="pwd.Password" class="form-control"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 mt-2">Confirm new password</div>
+                <div class="col-sm-6"><input type=text id=confopd name=confpwd [(ngModel)]="pwd.ConfirmPassword" class="form-control"></div>
+            </div>
+       </div>
+        <div class="card-footer">
+            <div class="row mt-2">
+                <div class="col-sm-6">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-danger" (click)="Cancel()">Cancel</button>
+                        <button type="button" class="btn btn-secondary" (click)="Update()">Update</button>
+                      </div>
+                </div>
+                <div class="col-sm-6"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+
+
