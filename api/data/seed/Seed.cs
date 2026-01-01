@@ -57,8 +57,12 @@ public class Seed
 
         if (categories != null)
         {
+            // ORDER BY NAME
+            categories = categories.OrderBy(c => c.Name).ToList();
             foreach (Category im in categories)
             {
+                // MAKE FIRST CHARACTER A CAPITAL LETTER
+                im.Name = char.ToUpper(im.Name[0]) + im.Name.Substring(1);
                 if (im.Id == 1)
                 {
                     im.MainPhoto = 1; // Set MainPhoto for the first category

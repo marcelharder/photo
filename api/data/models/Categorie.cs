@@ -1,7 +1,11 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace fotoservice.data.models;
 
 public class Category
 {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
     public required string Name { get; set; }
     public required string Description { get; set; }
