@@ -105,7 +105,7 @@ public class Dappercategory : IDapperCategoryService
                     _result.Add(help);
                 }
                 // sort op year
-                _result = _result.OrderBy(o => o.YearTaken).ToList();
+                // _result = _result.OrderBy(o => o.YearTaken).ToList();
           }
         }
         return PagedList<CategoryDto>.CreateAsync(_result, cp.PageNumber, cp.PageSize);
