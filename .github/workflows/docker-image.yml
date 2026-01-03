@@ -8,12 +8,13 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    defaults:
+        run:
+            working-directory: api
 
     steps:
     - name: Publish .NET project
-      run: |
-        working-directory: api
-        dotnet publish -c Release -o Release
+      run: dotnet publish -c Release -o Release
     - uses: actions/checkout@v4
     - name: Build the Docker image
       run: docker build . --file api/Dockerfile --tag my-image-name:$(date +%s)
