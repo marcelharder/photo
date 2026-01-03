@@ -1,0 +1,17 @@
+name: Docker Image CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Publish .NET project
+      run: dotnet publish -c Release -o Release
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build . --file api/Dockerfile --tag my-image-name:$(date +%s)
