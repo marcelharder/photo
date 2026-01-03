@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
         run:
-            working-directory: api
+            working-directory: ./api
 
     steps:
     - name: Publish .NET project
