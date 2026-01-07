@@ -4,17 +4,15 @@ on:
   workflow_dispatch:
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: api
+        working-directory: ./api
 
     steps:
+    - uses: actions/checkout@v4
     - name: Publish .NET project
       run: dotnet publish -c Release -o Release
-    - uses: actions/checkout@v4
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
