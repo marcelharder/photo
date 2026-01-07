@@ -138,7 +138,6 @@
     {"Name":"BulUitreiking","Description":"Uitreiking van bul","MainPhoto":1,"Number_of_images":5, "YearTaken":1982},
     {"Name":"diversen","Description":"diversen","MainPhoto":1,"Number_of_images":58, "YearTaken":2023},
     {"Name":"fietstocht","Description":"fietstocht","MainPhoto":1,"Number_of_images":18, "YearTaken":2023},
-    {"Name":"foto-indices","Description":"foto indices","MainPhoto":1,"Number_of_images":24, "YearTaken":2023},
     {"Name":"IBB-laan","Description":"IBB-laan","MainPhoto":1,"Number_of_images":52, "YearTaken":2023},
     {"Name":"Manenborg","Description":"Manenborg","MainPhoto":1,"Number_of_images":6, "YearTaken":2023},
     {"Name":"Meeuwen","Description":"Meeuwen","MainPhoto":1,"Number_of_images":8, "YearTaken":2023},
@@ -164,9 +163,9 @@
     {"Name":"MacWester","Description":"MacWester","MainPhoto":1,"Number_of_images":4, "YearTaken":1995},
     {"Name":"Vakantie Belgie 1977","Description":"Belgie - 1977","MainPhoto":1,"Number_of_images":10, "YearTaken":1977},
     {"Name":"Vakantie Cyprus 2025","Description":"Cyprus - 2025","MainPhoto":1,"Number_of_images":147, "YearTaken":2025},
-    {"Name":"Vakantie Filipijnen 2025","Description":"Filipijnen - 2025","MainPhoto":1,"Number_of_images":147, "YearTaken":2025},
+    {"Name":"Vakantie Filipijnen 2025 cleaned","Description":"Filipijnen - 2025","MainPhoto":1,"Number_of_images":1080, "YearTaken":2025},
     {"Name":"Dodenherdenking-Regiment-Geneeskundige-Troepen","Description":"Dodenherdenking-Regiment-Geneeskundige-Troepen","MainPhoto":1,"Number_of_images":187, "YearTaken":2012},
-    {"Name":"FotoIndices","Description":"Contact-fotos","MainPhoto":1,"Number_of_images":24, "YearTaken":2012}
+    {"Name":"Foto-indices","Description":"Contact-fotos","MainPhoto":1,"Number_of_images":24, "YearTaken":2012}
   
     
   

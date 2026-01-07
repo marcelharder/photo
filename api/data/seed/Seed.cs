@@ -51,30 +51,21 @@ public class Seed
     {
         if (await context.Categories.AnyAsync())
             return;
-        int counter = 0;
+       
+       var counter = 1;
         var catData = await System.IO.File.ReadAllTextAsync("data/seed/CategoryData.json");
         var categories = JsonSerializer.Deserialize<List<Category>>(catData);
 
         if (categories != null)
         {
-            // ORDER BY NAME
-            categories = categories.OrderBy(c => c.Name).ToList();
-            foreach (Category im in categories)
+            categories = categories.OrderBy(c => c.Name).ToList();// ORDER BY NAME
+            
+            foreach (Category im in categories) 
             {
-                // MAKE FIRST CHARACTER A CAPITAL LETTER
-                im.Name = char.ToUpper(im.Name[0]) + im.Name.Substring(1);
-                if (im.Id == 1)
-                {
-                    im.MainPhoto = 1; // Set MainPhoto for the first category
-                    counter = im.Number_of_images;
-                }
-                else
-                {
-                    im.MainPhoto = counter;
-                    counter = counter + im.Number_of_images - 1;
-                }
-                // save image to database
-                _ = context.Categories.Add(im);
+                im.MainPhoto = counter;// set main photo
+                counter = counter + im.Number_of_images - 1;
+                im.Name = char.ToUpper(im.Name[0]) + im.Name.Substring(1);// MAKE FIRST CHARACTER A CAPITAL LETTER
+                _ = context.Categories.Add(im);// save image to database
             }
             await context.SaveChangesAsync();
         }

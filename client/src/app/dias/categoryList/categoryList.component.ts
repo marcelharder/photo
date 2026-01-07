@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CategoryService } from '../../_services/category.service';
 import { CategoryDetailsComponent } from '../categoryDetails/categoryDetails.component';
 import {PaginationModule} from 'ngx-bootstrap/pagination';
+import { AccountService } from '../../_services/account.service';
 
 @Component({
     selector: 'app-categoryList',
@@ -12,20 +13,17 @@ import {PaginationModule} from 'ngx-bootstrap/pagination';
 })
 export class CategoryListComponent implements OnInit{
   catservice = inject(CategoryService);
+  accountService = inject(AccountService);
   currentPage = 0;
   smallnumPages = 0;
   pageNumber = 1;
   pageSize = 9;
 
   ngOnInit(){
-   // get the array from the account service signal
-   //this.SeriesArray = this.accountService.CatArray();
-   this.loadCategories();
- // if(!this.catservice.paginatedResult()){
    
- // }
-
-  }
+   this.pageNumber = this.accountService.currentPageNumber();// get the pageNumber from a signal
+   this.loadCategories();
+ }
 
   loadCategories(){
     this.catservice.getAllowedCategories(this.pageNumber, this.pageSize);
@@ -33,6 +31,7 @@ export class CategoryListComponent implements OnInit{
 
   pageChanged(event: any){
     if(this.pageNumber != event.page){
+      this.accountService.currentPageNumber.set(event.page); // update the signal in the service
       this.pageNumber = event.page;
       this.loadCategories();
     }
