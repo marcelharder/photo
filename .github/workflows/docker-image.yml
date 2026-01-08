@@ -9,19 +9,20 @@ jobs:
     defaults:
       run:
         working-directory: ./api
-
     steps:
-    - uses: actions/checkout@v4
-    - name: Set tag
-      run: echo "TAG=$(date +%s)" >> $GITHUB_ENV
-    - name: Build and pushdocker image
-      uses : mr-smithers-excellent/docker-build-push@v5
-      with:
-        image: photo
+     - uses: actions/checkout@v4
+       name: Check out code
+
+     - uses: mr-smithers-excellent/docker-build-push@v6
+       name: Build & push Docker image
+       with:
+        image: marcel88/photo
+        tags: v1, latest
         registry: docker.io
+        dockerfile: Dockerfile.ci
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-        tags: latest,${{ env.TAG }}
+    
     
 
     
