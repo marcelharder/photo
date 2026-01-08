@@ -33,7 +33,7 @@ namespace api.data.implementations
             _conf = conf;
         }
 
-        public async Task<PagedList<ImageDto>> getImages(ImageParams imgP)
+        public async Task<PagedList<ImageDto>?> getImages(ImageParams imgP)
         {
             IQueryable<ImageDto> images;
 
@@ -51,7 +51,11 @@ namespace api.data.implementations
                     .AsNoTracking();
             }
 
-            return PagedList<ImageDto>.CreateAsync(images, imgP.PageNumber, imgP.PageSize);
+            if (PagedList<ImageDto>.CreateAsync(images, imgP.PageNumber, imgP.PageSize) == null)
+            {
+                return null;
+            }
+            return PagedList<ImageDto>.CreateAsync(images, imgP.PageNumber, imgP.PageSize);   
         }
 
         public async Task<ImageDto> findImage(int Id)
