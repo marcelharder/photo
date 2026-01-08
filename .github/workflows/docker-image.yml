@@ -19,6 +19,7 @@ jobs:
         image: marcel88/photo
         tags: v1, latest
         registry: docker.io
+        Dockerfile: ./api/DockerFile
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
     
