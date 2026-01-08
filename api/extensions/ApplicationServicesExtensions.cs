@@ -41,7 +41,7 @@ namespace fotoservice.extensions;
             services.AddScoped<IImage,ImageImplementation>();
             services.AddScoped<ITokenService,TokenService>();
             services.AddScoped<IDapperCategoryService, Dappercategory>();
-            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+            services.AddAutoMapper(cfg => cfg.AddProfile<AutoMapperProfiles>());
             return services;
         }
     }

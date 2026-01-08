@@ -15,6 +15,7 @@ export class AccountService {
   baseUrl = environment.apiUrl;
   currentUser = signal<User | null>(null);
   CatArray = signal<categoryModel[] | null>(null);
+  currentPageNumber = signal<number>(1);
 
   login(model: any){
     return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(

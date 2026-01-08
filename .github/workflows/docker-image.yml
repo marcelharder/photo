@@ -1,0 +1,28 @@
+name: Docker Image CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./api
+    steps:
+     - uses: actions/checkout@v4
+       name: Check out code
+
+     - uses: mr-smithers-excellent/docker-build-push@v6
+       name: Build & push Docker image
+       with:
+        image: marcel88/photo
+        tags: v1, latest
+        registry: docker.io
+        Dockerfile: ./api/Dockerfile
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+    
+    
+
+    
