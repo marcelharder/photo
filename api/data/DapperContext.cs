@@ -3,13 +3,15 @@ namespace fotoservice.data;
     public class DapperContext
     {
        
-    private readonly IConfiguration _configuration;
+    
     private readonly string? _connectionString;
+
+    private readonly IConfiguration AppSettings;
 
     public DapperContext(IConfiguration configuration)
     {
-        _configuration = configuration;
-        _connectionString = _configuration.GetConnectionString("SQLConnection");
+        AppSettings = configuration;
+        _connectionString = AppSettings.GetConnectionString("SQLConnection");
     }
 
      public IDbConnection CreateConnection()
