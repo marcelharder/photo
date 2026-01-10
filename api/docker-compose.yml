@@ -1,4 +1,3 @@
-version: '3'
 services: 
   
   db:
@@ -14,7 +13,7 @@ services:
       - mariadb-data:/var/lib/mysql
   
   fotoservice:
-    image: foto_app:v7
+    image: foto_app:v9
     restart: always
     ports:
       - 8103:80
