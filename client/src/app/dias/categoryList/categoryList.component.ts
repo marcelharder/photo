@@ -3,13 +3,15 @@ import { CategoryService } from '../../_services/category.service';
 import { CategoryDetailsComponent } from '../categoryDetails/categoryDetails.component';
 import {PaginationModule} from 'ngx-bootstrap/pagination';
 import { AccountService } from '../../_services/account.service';
+import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-categoryList',
     standalone: true,
     templateUrl: './categoryList.component.html',
     styleUrls: ['./categoryList.component.css'],
-    imports: [CategoryDetailsComponent,PaginationModule]
+    imports: [CategoryDetailsComponent,PaginationModule,FormsModule,NgIf]
 })
 export class CategoryListComponent implements OnInit{
   catservice = inject(CategoryService);
