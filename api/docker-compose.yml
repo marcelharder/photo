@@ -14,10 +14,12 @@ services:
       - mariadb-data:/var/lib/mysql
   
   fotoservice:
-    image: foto_app:v7
+    image: foto:v9
     restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=http://+:8080
     ports:
-      - 8103:80
+      - 8103:8080
     networks: 
       - internal-container-network
     volumes:
