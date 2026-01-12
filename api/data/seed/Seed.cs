@@ -58,7 +58,7 @@ public class Seed
 
         if (categories != null)
         {
-            categories = categories.OrderBy(c => c.Name).ToList();// ORDER BY NAME
+            categories = categories.OrderBy(c => c.YearTaken).ToList();// ORDER BY Year
             
             foreach (Category im in categories) 
             {

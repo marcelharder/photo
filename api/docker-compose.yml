@@ -16,7 +16,7 @@ services:
     image: foto_app:v9
     restart: always
     ports:
-      - 8103:80
+      - 8103:8080
     networks: 
       - internal-container-network
     volumes:
