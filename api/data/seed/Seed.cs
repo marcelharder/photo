@@ -30,9 +30,13 @@ public class Seed
         }
         foreach (AppUser ap in users)
         {
+            if(ap.UserName != null)
+            {
             ap.UserName = ap.UserName.ToLower();
             await manager.CreateAsync(ap, "Pa$$w0rd");
             await manager.AddToRoleAsync(ap, "Surgery");
+            }
+            
         }
 
         var admin = new AppUser
