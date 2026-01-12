@@ -1,6 +1,7 @@
 using fotoservice.api.data.interfaces;
 
 namespace fotoservice.data.implementations;
+
 public class UserRepo : IUsers
 {
     private readonly UserManager<AppUser> _userManager;
@@ -44,10 +45,13 @@ public class UserRepo : IUsers
     {
         var user = await _userManager.FindByIdAsync(id.ToString());
         //var dto = new UserForReturnDto();
-
-
-        if (user != null) { return _mapper.Map<UserForReturnDto>(user); }
-        else {return null;}
+        if (user != null)
+        {
+            var us = _mapper.Map<UserForReturnDto>(user);
+            us.PhoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            return us;
+        }
+        else { return null; }
 
     }
 
@@ -101,9 +105,10 @@ public class UserRepo : IUsers
         var old_user = await _userManager.FindByIdAsync(p.UserId.ToString());
         if (old_user != null)
         {
-           var new_user = _mapper.Map<UserForUpdateDto, AppUser>(p, old_user);
-           await _userManager.UpdateAsync(new_user);
-           return 1;
+            var new_user = _mapper.Map<UserForUpdateDto, AppUser>(p, old_user);
+            new_user.PhoneNumber = p.PhoneNumber;
+            await _userManager.UpdateAsync(new_user);
+            return 1;
         }
         else { return 0; }
     }

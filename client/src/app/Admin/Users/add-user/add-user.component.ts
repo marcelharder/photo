@@ -39,7 +39,7 @@ export class AddUserComponent {
       {
         next: (data) => {
           this.route.navigateByUrl("/");
-          this.toast.success("User changed successfully");
+          this.toast.success("User added successfully");
         },error: (err) => {
           this.toast.error("Please fill the phone number: " + err.error[0]);
         }
