@@ -4,7 +4,6 @@ import { UserService } from '../../../_services/user.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
-import { AccountService } from '../../../_services/account.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

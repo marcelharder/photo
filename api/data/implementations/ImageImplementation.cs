@@ -207,7 +207,7 @@ namespace api.data.implementations
 
         public async Task<List<Category>> getCategories()
         {
-            return _context.Categories.AsList();
+            return await _context.Categories.ToListAsync();
         }
 
         public async Task SeedImages()
