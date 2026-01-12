@@ -5,6 +5,7 @@
     </div>
    
     <div class="card-body"  *ngIf="!showAddPage()">
+        
         <div class="row">
             <div *ngFor="let t of listOfUsers" class="col-sm-4">
                 <app-userdetails [us]="t"></app-userdetails>
@@ -16,5 +17,19 @@
         <div class="row">
            <app-add-user></app-add-user>
         </div>
+    </div>
+
+    <div class="footer">
+        <form #titlePageForm="ngForm" id="numberform">
+        <div class="row">
+            <div class="col-sm-6">
+                Set titel page image:
+               <input type="number" min="0" [(ngModel)]="TitelPageImage" name="TitelPageImage "/>
+            </div>
+            <div class="col-sm-6">
+                <button class="btn btn-primary" (click)="setTitelPageImage(TitelPageImage)">Save</button>
+            </div>
+        </div>
+        </form>
     </div>
 </div>

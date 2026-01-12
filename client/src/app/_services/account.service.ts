@@ -16,6 +16,7 @@ export class AccountService {
   currentUser = signal<User | null>(null);
   CatArray = signal<categoryModel[] | null>(null);
   currentPageNumber = signal<number>(1);
+  titelPageImage = signal<number>(2010);
 
   login(model: any){
     return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(

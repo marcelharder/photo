@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { AccountService } from '../_services/account.service';
 
 @Component({
   selector: 'app-home',
@@ -10,14 +11,15 @@ import { environment } from '../../environments/environment';
 })
 export class HomeComponent implements OnInit{
   baseUrl = environment.apiUrl; 
+  accountService = inject(AccountService);
 
   
   ngOnInit(): void {
     
   }
 
-  getFotoFile(id: string) {
-    return this.baseUrl + 'Images/getFullImageFile/' + id;
+  getFotoFile() {
+    return this.baseUrl + 'Images/getFullImageFile/' + this.accountService.titelPageImage();
   }
 
   
