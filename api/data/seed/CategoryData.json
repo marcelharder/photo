@@ -167,8 +167,12 @@
     {"Name":"Dodenherdenking-Regiment-Geneeskundige-Troepen","Description":"Dodenherdenking-Regiment-Geneeskundige-Troepen","MainPhoto":1,"Number_of_images":186, "YearTaken":2012},
     {"Name":"Flickr","Description":"Flickr-fotos","MainPhoto":1,"Number_of_images":517, "YearTaken":2012},
     {"Name":"Sail-2025","Description":"Sail 2025","MainPhoto":1,"Number_of_images":37, "YearTaken":2025},
-    {"Name":"Foto-indices","Description":"Contact-fotos","MainPhoto":1,"Number_of_images":24, "YearTaken":2012}
-   
+    {"Name":"Foto-indices","Description":"Contact-fotos","MainPhoto":1,"Number_of_images":24, "YearTaken":2012},
+    {"Name":"Inge-pictures/Blom-voor-1950","Description":"Voor 1950","MainPhoto":1,"Number_of_images":24, "YearTaken":2012},
+    {"Name":"Inge-pictures/Blom-1951-1970","Description":"1951-1970","MainPhoto":1,"Number_of_images":153, "YearTaken":2012},
+    {"Name":"Inge-pictures/Blom-1971-1990","Description":"1971-1990","MainPhoto":1,"Number_of_images":286, "YearTaken":2012},
+    {"Name":"Inge-pictures/Blom-1991-2010","Description":"1991-2010","MainPhoto":1,"Number_of_images":421, "YearTaken":2012},
+    {"Name":"Inge-pictures/Blom-2011-2025","Description":"2011-2025","MainPhoto":1,"Number_of_images":263, "YearTaken":2012}
     
   
 
