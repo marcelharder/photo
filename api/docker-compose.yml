@@ -13,7 +13,7 @@ services:
       - mariadb-data:/var/lib/mysql
   
   fotoservice:
-    image: foto_app:v10
+    image: foto_app:v11
     restart: always
     ports:
       - 8103:8080
