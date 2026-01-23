@@ -8,7 +8,7 @@ public class UserForUpdateDto
         public required string Email {get; set;}
         public required string Gender {get; set;}
         public required string PhoneNumber {get; set;}
-        public string? AllowedToSee {get; set;}
+        public required int[] AllowedToSee {get; set;}
 
 
        

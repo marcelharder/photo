@@ -18,6 +18,7 @@ export class UserdetailsComponent implements OnInit {
   private usa = inject(UserService);
   private route = inject(Router);
   password = 'oldpassword';
+  allowed = '';
 
   constructor(private toast: ToastrService) {}
 
@@ -29,15 +30,23 @@ export class UserdetailsComponent implements OnInit {
   getFullUserDetails(UserId: number) {
     this.usa.getSpecificUser(UserId).subscribe({
       next: (data) => {
-        if (this.us != undefined) {
+       if (this.us != undefined) {
           this.us.AllowedToSee = data.AllowedToSee;
           this.us.Email = data.Email;
           this.us.PhoneNumber = data.PhoneNumber;
           this.us.Created = data.Created;
           this.us.gender = data.gender;
+          this.allowed = this.allowedToSeeAsString();
         }
       },
     });
+  }
+  allowedToSeeAsString(): string {
+    let result = '';
+    if (this.us !== undefined && this.us.AllowedToSee !== undefined) {
+      result = this.us.AllowedToSee.join(',');
+    }
+    return result;
   }
 
   deleteUser() {
@@ -56,6 +65,17 @@ export class UserdetailsComponent implements OnInit {
       if (this.us?.PhoneNumber == null || this.us?.PhoneNumber == '') {
         this.toast.error('Please fill the phone number');
         return;
+      }
+
+      // save the allowed to see as array of numbers
+      if (this.allowed != '') {
+        const allowedArray = this.allowed
+          .split(',')
+          .map((item) => parseInt(item.trim(), 10))
+          .filter((item) => !isNaN(item));
+        this.us.AllowedToSee = allowedArray;
+      } else {
+        this.us.AllowedToSee = [];
       }
 
       this.usa.editUser(this.us).subscribe({

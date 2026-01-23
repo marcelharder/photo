@@ -75,11 +75,11 @@ namespace api.data.implementations
 
             if (selectedUser != null)
             {
-                var categories = selectedUser.AllowedToSee;
-                if (categories != null)
+                var catarray = selectedUser.AllowedToSee;
+              /*   if (categories != null)
                 {
                     cararray = categories.Split(",");
-                }
+                } */
             }
             foreach (string s in cararray)
             {
