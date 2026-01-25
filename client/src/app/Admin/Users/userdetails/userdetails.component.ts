@@ -18,6 +18,7 @@ export class UserdetailsComponent implements OnInit {
   private usa = inject(UserService);
   private route = inject(Router);
   password = 'oldpassword';
+  allowedToSeeString: string = '';
 
   constructor(private toast: ToastrService) {}
 
@@ -35,6 +36,7 @@ export class UserdetailsComponent implements OnInit {
           this.us.PhoneNumber = data.PhoneNumber;
           this.us.Created = data.Created;
           this.us.gender = data.gender;
+          this.allowedToSeeString = this.us.AllowedToSee.join(', ');
         }
       },
     });
@@ -57,6 +59,12 @@ export class UserdetailsComponent implements OnInit {
         this.toast.error('Please fill the phone number');
         return;
       }
+
+      //` Update AllowedToSee from string to array of integers
+      this.us.AllowedToSee = this.allowedToSeeString
+        .split(',')
+        .map((s) => parseInt(s.trim()))
+        .filter((n) => !isNaN(n));
 
       this.usa.editUser(this.us).subscribe({
         next: (data) => {
