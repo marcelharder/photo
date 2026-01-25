@@ -6,7 +6,7 @@ export interface User {
     paidTill: Date;
     password:string,
     Email:string,
-    AllowedToSee:string,
+    AllowedToSee:number[],
     gender:string,
     PhoneNumber:string
 }

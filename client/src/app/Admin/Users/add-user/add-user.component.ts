@@ -25,7 +25,7 @@ export class AddUserComponent {
     paidTill: new Date,
     password: '',
     Email: '',
-    AllowedToSee:'',
+    AllowedToSee:[],
     gender: '',
     PhoneNumber: ''
   };
