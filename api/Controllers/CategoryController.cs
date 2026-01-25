@@ -35,11 +35,11 @@ public class CategoryController : BaseApiController
         {
             if (loggedinUser.AllowedToSee != null)
             {
-                List<int> catArray = loggedinUser.AllowedToSee.Split(',')
+               /*  List<int> catArray = loggedinUser.AllowedToSee.Split(',')
                  .Select(t => int.Parse(t))
                  .ToList();
-                 
-                var result = await _cat.GetAllowedCategories(catArray,cp);
+                  */
+                var result = await _cat.GetAllowedCategories(loggedinUser.AllowedToSee.ToList(),cp);
                 var test = new PaginationHeader(result!.CurrentPage, result!.PageSize, result!.TotalCount, result!.TotalPages);
                 Response.AddPaginationHeader(test);
                 return Ok(result);

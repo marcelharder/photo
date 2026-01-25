@@ -55,7 +55,7 @@ namespace api.data.implementations
             {
                 return null;
             }
-            return PagedList<ImageDto>.CreateAsync(images, imgP.PageNumber, imgP.PageSize);   
+            return PagedList<ImageDto>.CreateAsync(images, imgP.PageNumber, imgP.PageSize);
         }
 
         public async Task<ImageDto> findImage(int Id)
@@ -66,8 +66,7 @@ namespace api.data.implementations
 
         public async Task<ActionResult<List<ImageDto>>> findImagesByUser(string email)
         {
-            // get the categories that his user can see
-            string[] cararray = { };
+
             IQueryable<ImageDto> images;
             var l = new List<ImageDto>();
 
@@ -75,38 +74,37 @@ namespace api.data.implementations
 
             if (selectedUser != null)
             {
-                var categories = selectedUser.AllowedToSee;
-                if (categories != null)
+                foreach (int s in selectedUser.AllowedToSee)
                 {
-                    cararray = categories.Split(",");
-                }
-            }
-            foreach (string s in cararray)
-            {
-                images = _context
-                    .Images.Where(x => x.Category == Convert.ToInt32(s))
-                    .ProjectTo<ImageDto>(_mapper.ConfigurationProvider)
+                    images = _context
+                        .Images.Where(x => x.Category == s)
+                        .ProjectTo<ImageDto>(_mapper.ConfigurationProvider)
                     .AsNoTracking();
 
-                l.AddRange(await images.ToListAsync());
+                    l.AddRange(await images.ToListAsync());
+                }
+                return l;
             }
-            return l;
+            else
+            {
+                return null;
+            }
         }
 
-      /*   public async Task<ActionResult<List<ImageDto>>> GetImagesByCategory(ImageParams ip)
-        {
-            string[] cararray = { };
-            var l = new List<ImageDto>();
-            // get all the images from this category
-            var images = await _context.Images.Where(x => x.Category == ip.Id).ToArrayAsync();
-            // return image DTO
-            foreach (fotoservice.data.models.Image im in images)
-            {
-                l.Add(_mapper.Map<ImageDto>(im));
-            }
+        /*   public async Task<ActionResult<List<ImageDto>>> GetImagesByCategory(ImageParams ip)
+          {
+              string[] cararray = { };
+              var l = new List<ImageDto>();
+              // get all the images from this category
+              var images = await _context.Images.Where(x => x.Category == ip.Id).ToArrayAsync();
+              // return image DTO
+              foreach (fotoservice.data.models.Image im in images)
+              {
+                  l.Add(_mapper.Map<ImageDto>(im));
+              }
 
-            return l;
-        } */
+              return l;
+          } */
 
         public async Task<int> deleteImage(int id)
         {
@@ -249,29 +247,32 @@ namespace api.data.implementations
 
             return;
         }
-    
-        public async Task UpdateCategories(){
 
-        // fill a list with the id of the first image of each category
-        List<int> listOfIds = new List<int>();
-        var counter = 0;
+        public async Task UpdateCategories()
+        {
 
-        var allCategories = await _context.Categories.ToListAsync();
-        foreach(Category cat in allCategories){
-            var images = _context.Images.Where(global => global.Category == cat.Id).ToList();
-            listOfIds.Add(images[0].Id);
+            // fill a list with the id of the first image of each category
+            List<int> listOfIds = new List<int>();
+            var counter = 0;
+
+            var allCategories = await _context.Categories.ToListAsync();
+            foreach (Category cat in allCategories)
+            {
+                var images = _context.Images.Where(global => global.Category == cat.Id).ToList();
+                listOfIds.Add(images[0].Id);
+            }
+
+            // with this list update the Categories
+            foreach (Category cat in allCategories)
+            {
+                cat.MainPhoto = listOfIds[counter];
+                _context.Categories.Update(cat);
+                await _context.SaveChangesAsync();
+                counter++;
+            }
+            //  var allImages = await context.Images.ToListAsync();
         }
 
-       // with this list update the Categories
-         foreach(Category cat in allCategories){
-            cat.MainPhoto = listOfIds[counter];
-            _context.Categories.Update(cat);
-            await _context.SaveChangesAsync();
-            counter++;
-         }
-       //  var allImages = await context.Images.ToListAsync();
-    }
 
-       
     }
 }

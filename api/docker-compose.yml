@@ -12,17 +12,17 @@ services:
     volumes:
       - mariadb-data:/var/lib/mysql
   
-  fotoservice:
-    image: foto_app:v11
-    restart: always
-    ports:
-      - 8103:8080
-    networks: 
-      - internal-container-network
-    volumes:
-      - fotos:/nfs/fotoproject/
-    depends_on:
-      - db
+#  fotoservice:
+#    image: foto_app:v11
+#    restart: always
+#    ports:
+#      - 8103:8080
+#    networks: 
+#      - internal-container-network
+#    volumes:
+#      - fotos:/nfs/fotoproject/
+#    depends_on:
+#      - db
  
 
 volumes:
