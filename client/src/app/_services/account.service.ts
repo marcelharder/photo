@@ -4,7 +4,6 @@ import { User } from '../_models/User';
 import { map } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { categoryModel } from '../_models/categoryModel';
-import { CategoryService } from './category.service';
 import { PasswordUpdate } from '../_models/PasswordUpdate';
 
 @Injectable({
@@ -16,7 +15,7 @@ export class AccountService {
   currentUser = signal<User | null>(null);
   CatArray = signal<categoryModel[] | null>(null);
   currentPageNumber = signal<number>(1);
-  titelPageImage = signal<number>(2010);
+  titelPageImage = signal<number>(0);
 
   login(model: any){
     return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(

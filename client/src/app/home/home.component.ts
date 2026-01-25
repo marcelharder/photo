@@ -19,7 +19,10 @@ export class HomeComponent implements OnInit{
   }
 
   getFotoFile() {
-    return this.baseUrl + 'Images/getFullImageFile/' + this.accountService.titelPageImage();
+    if(this.accountService.titelPageImage() !== 0){
+      return this.baseUrl + 'Images/getFullImageFile/' + this.accountService.titelPageImage();
+    }
+    return 'assets/2.jpg';
   }
 
   

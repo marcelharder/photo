@@ -9,6 +9,7 @@ import { provideToastr } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    
     provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(withInterceptors([jwtInterceptor])),
     provideAnimations(),
@@ -19,3 +20,5 @@ export const appConfig: ApplicationConfig = {
     }),
   ]
 };
+
+
