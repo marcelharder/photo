@@ -21,13 +21,8 @@ export class CategoryListComponent implements OnInit{
   pageNumber = 1;
   pageSize = 9;
 
-  
-
   ngOnInit(){
-   
    this.pageNumber = this.accountService.currentPageNumber();// get the pageNumber from a signal
-   
-  
    this.loadCategories();
     }
 

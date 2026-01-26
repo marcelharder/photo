@@ -69,6 +69,13 @@ export class FulldiaComponent implements OnInit {
     this.diaDetails = 1;}
   HideDiaDetails(){this.diaDetails = 0;}
 
+  backToDiaList(){
+    
+    
+    this.router.navigate(['/diaList/' + this.carouselData.category]);
+  
+  }
+
 
   getSlideNumber(): string {
     let numberLinks = +this.carouselData.nextImageIdL;

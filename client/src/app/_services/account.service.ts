@@ -15,6 +15,7 @@ export class AccountService {
   currentUser = signal<User | null>(null);
   CatArray = signal<categoryModel[] | null>(null);
   currentPageNumber = signal<number>(1);
+  currentDiaListNo = signal<number>(1);
   titelPageImage = signal<number>(0);
 
   login(model: any){
