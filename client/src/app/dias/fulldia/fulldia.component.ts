@@ -7,6 +7,7 @@ import { NgIf } from '@angular/common';
 import { slideModel } from '../../_models/slideModel';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { BreakpointObserver, Breakpoints, BreakpointState} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-fulldia',
@@ -17,9 +18,11 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class FulldiaComponent implements OnInit {
   baseUrl = environment.apiUrl;
+  breakpointSub: any;
   numberOfSlides = 0;
   @Input() id = '';
   diaDetails = 0;
+  isMobile = true
   imgService = inject(ImageService);
   router = inject(Router);
   carouselData: CarouselModel = {
@@ -53,15 +56,19 @@ export class FulldiaComponent implements OnInit {
         },
       });
     }
+     this.breakpointSub = this.breakpointObserver
+      .observe([Breakpoints.Handset])
+      .subscribe((state: BreakpointState) => {
+        // `state.matches` is true when ANY of the queried breakpoints match.
+        this.isMobile = state.matches;
+        console.log('Handset breakpoint matched?', this.isMobile);
+      });
   }
 
   /**
    *
    */
-  constructor(private toastr: ToastrService) {
-    
-    
-  }
+   constructor(private toastr: ToastrService, private breakpointObserver: BreakpointObserver) { }
 
   showDiaDetails(){if(this.diaDetails == 1){return true} else {return false}}
   SetDiaDetails(){
